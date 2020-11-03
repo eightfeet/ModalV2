@@ -128,7 +128,7 @@ module.exports = (env, argv) => {
                                 {
                                     loader: 'css-loader',
                                     options: {
-                                        modules: false,
+                                        modules: true,
                                         sourceMap: !isPro,
                                         importLoaders: 1,
                                         minimize: true,
