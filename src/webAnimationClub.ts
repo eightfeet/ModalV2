@@ -41,7 +41,7 @@ export function setCssEndEvent(element: HTMLElement, type: string) {
  * @param {HTMLElement} element
  * @return {*} 
  */
-export function onceTransitionEnd(element: HTMLElement) {
+export function onceTransitionEnd(element: HTMLElement): any {
     return new Promise((resolve) => {
         setCssEndEvent(element, 'transition').then(resolve);
     });

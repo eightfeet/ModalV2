@@ -167,13 +167,13 @@ class Modal {
             `.${s.content}`
         );
         this.handleClose(doNotRemove);
-        const wrapElement_1: HTMLElement = await new Promise((resolve) => {
+        const result: HTMLElement = await new Promise((resolve) => {
             window.setTimeout(() => {
                 wrapElement.classList.add(s.coveshow);
                 resolve((wrapElement as HTMLElement));
             }, 100);
         });
-        return await onceTransitionEnd(wrapElement_1);
+        return await onceTransitionEnd(result);
     };
 
     /**

@@ -1,13 +1,14 @@
 {
   "name": "@eightfeet/modal",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "",
   "private": true,
   "scripts": {
     "build": "rm -rf ./dist && webpack --mode=production",
     "build:uat": "rm -rf ./dist && webpack --mode=production --isuat=true",
     "dev": "webpack-dev-server --mode=development",
-    "report": "rm -rf ./dist && webpack --mode=production --report=true"
+    "report": "rm -rf ./dist && webpack --mode=production --report=true",
+    "prepublish": "npm run build"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
