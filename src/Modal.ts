@@ -10,13 +10,13 @@ interface Parameters {
     /**
      * modalId 不传自动生成 modal + 时间戳 + 100以内的随机数
      */
-    id: string | undefined;
+    id?: string | undefined;
     /**
      *  动画
      *  form形式
      *  duration 持续时间
      */
-    animation: {
+    animation?: {
         form?:
             | 'fadeInLeft'
             | 'fadeInRight'
@@ -30,33 +30,33 @@ interface Parameters {
         duration?: string | number;
     };
     /**
-     * 是否点击背景层关闭弹窗
+     * 是否点击背景层关闭弹窗，默认false
      */
-    shouldCloseOnOverlayClick: boolean;
+    shouldCloseOnOverlayClick?: boolean;
     /**
      * 父级Id
      */
-    parentId: string | undefined;
+    parentId?: string;
     /**
      * 弹窗层级
      */
-    zIndex: number;
+    zIndex?: number;
     /**
-     * 是否自带关闭按钮
+     * 是否自带关闭按钮，默认自带
      */
-    closable: boolean;
+    closable?: boolean;
     /**
      * 基础样式
      */
-    style: CSS.Properties;
+    style?: CSS.Properties;
     /**
      * em弹窗单位字体大小
      */
-    emBase: any;
+    emBase?: number;
     /**
      * 关闭
      */
-    onCancel: () => void | undefined;
+    onCancel?: () => void;
 }
 
 class Modal {
