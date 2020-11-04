@@ -108,7 +108,7 @@ class Modal {
     /**
      *
      * @description 关闭取消
-     * @param {boolean} doNotRemove 仅隐藏，不移除Model
+     * @param {boolean} doNotRemove 是否移除弹窗 默认移除，=true时，不移除Model仅隐藏
      * @memberof Modal
      */
     handleClose = (doNotRemove: boolean) => {
@@ -142,18 +142,24 @@ class Modal {
 
     /**
      * @description 创建弹窗
-     * @param {Object} elements {header: htmlDom, article: htmlDom, footer: htmlDom}
-     * @param {Boolean} doNotRemove 是否移除弹窗，doNotRemove=true时点击关闭按钮仅隐藏当前弹窗而不移除当前弹窗Dom
+     * @param {{
+     *         header: InnerHTML;
+     *         article: InnerHTML;
+     *         footer: InnerHTML;
+     *     }} elements 弹窗元素
+     * @param {boolean} doNotRemove 是否移除弹窗 默认移除，=true时，不移除Model仅隐藏
      * @memberof Modal
      */
-
-    create = async (elements: {
-        header: string;
-        article: string;
-        footer: string;
-    }, doNotRemove: boolean) => {
+    create = async (
+        elements: {
+            header: InnerHTML;
+            article: InnerHTML;
+            footer: InnerHTML;
+        },
+        doNotRemove: boolean
+    ) => {
         const { id, parentId, emBase, ...other } = this.state;
-        let modalElement:HTMLElement = document.getElementById(id);
+        let modalElement: HTMLElement = document.getElementById(id);
         if (modalElement) {
             this.show();
             console.warn('已创建modal时 modal.create === modal.show');
@@ -163,14 +169,12 @@ class Modal {
         this.state.display = true;
         modalElement = document.getElementById(id);
         const wrapElement = modalElement.querySelector(`.${s.cove}`);
-        this.state.contentDom = modalElement.querySelector(
-            `.${s.content}`
-        );
+        this.state.contentDom = modalElement.querySelector(`.${s.content}`);
         this.handleClose(doNotRemove);
         const result: HTMLElement = await new Promise((resolve) => {
             window.setTimeout(() => {
                 wrapElement.classList.add(s.coveshow);
-                resolve((wrapElement as HTMLElement));
+                resolve(wrapElement as HTMLElement);
             }, 100);
         });
         return await onceTransitionEnd(result);
@@ -222,24 +226,26 @@ class Modal {
     unvisible = async () => {
         const { id } = this.state;
         const modalElement = document.getElementById(id);
-        const resultElement: HTMLElement = await new Promise((resolve, reject) => {
-            const wrapElement: HTMLElement = modalElement.querySelector(
-                `.${s.cove}`
-            );
-            if (!modalElement) {
-                reject(commonErr);
-                return;
+        const resultElement: HTMLElement = await new Promise(
+            (resolve, reject) => {
+                const wrapElement: HTMLElement = modalElement.querySelector(
+                    `.${s.cove}`
+                );
+                if (!modalElement) {
+                    reject(commonErr);
+                    return;
+                }
+                wrapElement.classList.remove(s.coveshow);
+                resolve(wrapElement);
             }
-            wrapElement.classList.remove(s.coveshow);
-            resolve(wrapElement);
-        });
+        );
         await onceTransitionEnd(resultElement);
         return (modalElement.style.display = 'none');
     };
 
     /**
      * @description 隐藏或移除弹窗
-     * @param {boolean} 是否移除弹窗，doNotRemove=true时仅隐藏当前弹窗而不移除当前弹窗Dom
+     * @param {boolean} 是否移除弹窗 =true时，不移除Model仅隐藏
      * @memberof Modal
      */
     hide = (doNotRemove: boolean) => {
