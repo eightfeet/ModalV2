@@ -4,7 +4,7 @@
         "module": "commonjs",
         "target": "es5",
         "declaration": true,
-        "declarationDir": "./dist",
+        "declarationDir": "./lib",
         "baseUrl": "./src",
         "paths": {
             "~/*": ["*"]

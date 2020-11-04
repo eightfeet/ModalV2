@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
             library: '___Modal___',
             libraryTarget: 'umd',
             libraryExport: 'default',
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, 'lib'),
             publicPath: process.env.PUBLIC_PATH,
             filename: 'index.js',
         },

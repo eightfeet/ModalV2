@@ -4,14 +4,14 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./dist && webpack --mode=production",
-    "build:uat": "rm -rf ./dist && webpack --mode=production --isuat=true",
+    "build": "rm -rf ./lib && webpack --mode=production",
+    "build:uat": "rm -rf ./lib && webpack --mode=production --isuat=true",
     "dev": "webpack-dev-server --mode=development",
-    "report": "rm -rf ./dist && webpack --mode=production --report=true",
+    "report": "rm -rf ./lib && webpack --mode=production --report=true",
     "prepublish": "npm run build"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "author": "eightfeet",
   "license": "ISC",
   "dependencies": {
