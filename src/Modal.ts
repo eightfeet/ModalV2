@@ -59,6 +59,8 @@ interface Parameters {
     onCancel?: () => void;
 }
 
+type HTMLString = string;
+
 class Modal {
     state: Parameters & {
         /**
@@ -143,18 +145,18 @@ class Modal {
     /**
      * @description 创建弹窗
      * @param {{
-     *         header: InnerHTML;
-     *         article: InnerHTML;
-     *         footer: InnerHTML;
+     *         header: HTMLString;
+     *         article: HTMLString;
+     *         footer: HTMLString;
      *     }} elements 弹窗元素
      * @param {boolean} doNotRemove 是否移除弹窗 默认移除，=true时，不移除Model仅隐藏
      * @memberof Modal
      */
     create = async (
         elements?: {
-            header?: InnerHTML;
-            article?: InnerHTML;
-            footer?: InnerHTML;
+            header?: HTMLString;
+            article?: HTMLString;
+            footer?: HTMLString;
         },
         doNotRemove?: boolean
     ) => {
