@@ -59,7 +59,7 @@ interface Parameters {
     onCancel?: () => void;
 }
 
-type HTMLString = string;
+export type HTMLString = string;
 
 class Modal {
     state: Parameters & {
