@@ -2,7 +2,6 @@
   "name": "@eightfeet/modal",
   "version": "2.1.0",
   "description": "",
-  "private": true,
   "scripts": {
     "build": "rm -rf ./lib && webpack --mode=production",
     "build:uat": "rm -rf ./lib && webpack --mode=production --isuat=true",
