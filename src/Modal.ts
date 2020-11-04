@@ -151,12 +151,12 @@ class Modal {
      * @memberof Modal
      */
     create = async (
-        elements: {
-            header: InnerHTML;
-            article: InnerHTML;
-            footer: InnerHTML;
+        elements?: {
+            header?: InnerHTML;
+            article?: InnerHTML;
+            footer?: InnerHTML;
         },
-        doNotRemove: boolean
+        doNotRemove?: boolean
     ) => {
         const { id, parentId, emBase, ...other } = this.state;
         let modalElement: HTMLElement = document.getElementById(id);
