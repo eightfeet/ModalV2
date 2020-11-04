@@ -42,7 +42,6 @@ interface Parameters {
      */
     onCancel?: () => void;
 }
-export declare type HTMLString = string;
 declare class Modal {
     state: Parameters & {
         /**
@@ -65,17 +64,17 @@ declare class Modal {
     /**
      * @description 创建弹窗
      * @param {{
-     *         header: HTMLString;
-     *         article: HTMLString;
-     *         footer: HTMLString;
+     *         header: InnerHTMLString;
+     *         article: InnerHTMLString;
+     *         footer: InnerHTMLString;
      *     }} elements 弹窗元素
      * @param {boolean} doNotRemove 是否移除弹窗 默认移除，=true时，不移除Model仅隐藏
      * @memberof Modal
      */
     create: (elements?: {
-        header?: HTMLString;
-        article?: HTMLString;
-        footer?: HTMLString;
+        header?: string;
+        article?: string;
+        footer?: string;
     }, doNotRemove?: boolean) => Promise<any>;
     /**
      * @description 移除弹窗
