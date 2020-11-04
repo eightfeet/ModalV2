@@ -42,7 +42,7 @@ interface Parameters {
      */
     onCancel?: () => void;
 }
-declare type HTMLString = string;
+export declare type HTMLString = string;
 declare class Modal {
     state: Parameters & {
         /**
