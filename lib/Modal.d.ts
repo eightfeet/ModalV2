@@ -71,11 +71,11 @@ declare class Modal {
      * @param {boolean} doNotRemove 是否移除弹窗 默认移除，=true时，不移除Model仅隐藏
      * @memberof Modal
      */
-    create: (elements: {
-        header: InnerHTML;
-        article: InnerHTML;
-        footer: InnerHTML;
-    }, doNotRemove: boolean) => Promise<any>;
+    create: (elements?: {
+        header?: InnerHTML;
+        article?: InnerHTML;
+        footer?: InnerHTML;
+    }, doNotRemove?: boolean) => Promise<any>;
     /**
      * @description 移除弹窗
      * @memberof Modal
