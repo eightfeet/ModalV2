@@ -45,10 +45,30 @@ interface Parameters {
      * 是否自带关闭按钮，默认自带
      */
     closable?: boolean;
+
     /**
      * 基础样式
+     * overlay 遮罩层、content 内容、modify 修饰层、close 关闭按钮、header 页头、article 主题内容、footer 页脚
+     * @type {{
+     *         overlay?: CSS.Properties;
+     *         content?: CSS.Properties;
+     *         modify?: CSS.Properties;
+     *         close?: CSS.Properties;
+     *         header?: CSS.Properties;
+     *         article?: CSS.Properties;
+     *         footer?: CSS.Properties;
+     *     }}
+     * @memberof Parameters
      */
-    style?: CSS.Properties;
+    style?: {
+        overlay?: CSS.Properties;
+        content?: CSS.Properties;
+        modify?: CSS.Properties [];
+        close?: CSS.Properties;
+        header?: CSS.Properties;
+        article?: CSS.Properties;
+        footer?: CSS.Properties;
+    };
     /**
      * em弹窗单位字体大小
      */
