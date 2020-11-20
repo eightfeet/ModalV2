@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-interface Parameters {
+export interface Parameters {
     /**
      * modalId 不传自动生成 modal + 时间戳 + 100以内的随机数
      */
