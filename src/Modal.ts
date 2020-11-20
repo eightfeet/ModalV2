@@ -6,7 +6,7 @@ import { onceTransitionEnd } from './webAnimationClub';
 
 const commonErr = 'Modal is not created or Modal is removed!';
 
-interface Parameters {
+export interface Parameters {
     /**
      * modalId 不传自动生成 modal + 时间戳 + 100以内的随机数
      */
