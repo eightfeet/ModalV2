@@ -3,8 +3,11 @@ if (window.Promise === undefined) {
 	throw new Error('Promise pollyfill not found.');
 }
 
-import Modal, {Parameters as ModalParameters} from './Modal';
+import Modal, {Parameters} from './Modal';
 import { createInlineStyles } from './inlineStyle';
 export default Modal;
-export {createInlineStyles, ModalParameters}
+export {createInlineStyles}
 
+export type ModalParameters = Parameters;
+export type ModalStyle = Parameters["style"];
+export type ModalAnimation = Parameters["animation"];
