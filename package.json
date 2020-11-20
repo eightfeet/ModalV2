@@ -1,6 +1,6 @@
 {
   "name": "@eightfeet/modal",
-  "version": "2.1.9",
+  "version": "2.2.0",
   "description": "",
   "scripts": {
     "build": "rm -rf ./lib && webpack --mode=production",
