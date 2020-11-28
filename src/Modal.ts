@@ -3,6 +3,7 @@ import * as CSS from 'csstype';
 import { createDom, removeDom } from './htmlFactory';
 import template from './template';
 import { onceTransitionEnd } from './webAnimationClub';
+import { createInlineStyles } from './inlineStyle';
 
 const commonErr = 'Modal is not created or Modal is removed!';
 
@@ -90,6 +91,8 @@ class Modal {
          */
         contentDom: HTMLElement | undefined;
     };
+
+    static createInlineStyles = createInlineStyles;
 
     constructor(parameter: Parameters) {
         const stamp = new Date().getTime();

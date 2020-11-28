@@ -72,6 +72,7 @@ declare class Modal {
          */
         contentDom: HTMLElement | undefined;
     };
+    static createInlineStyles: (style: CSS.Properties<0 | (string & {}), string & {}>) => string;
     constructor(parameter: Parameters);
     /**
      *

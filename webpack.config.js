@@ -181,7 +181,7 @@ module.exports = (env, argv) => {
             .concat(argv.report ? [new BundleAnalyzerPlugin()] : []),
         devtool: isPro || isUat ? 'source-map' : 'cheap-module-eval-source-map',
         devServer: {
-            port: process.env.PORT || 3000,
+            port: process.env.PORT || 8000,
             host: '0.0.0.0',
             publicPath: '/',
             contentBase: './src',
