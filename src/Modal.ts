@@ -27,7 +27,9 @@ export interface Parameters {
             | 'zoomInRight'
             | 'zoomInDown'
             | 'zoomInUp'
-            | 'zoomIn';
+            | 'zoomIn'
+            | 'flipInX'
+            | 'flipInY';
         duration?: string | number;
     };
     /**

@@ -10,21 +10,21 @@
         width: 100%;
         overflow: hidden;
         opacity: 0;
-        transition-property:opacity; 
+        transition-property: opacity;
         display: table;
         text-align: center;
-        
+
         .wrap {
             display: table-cell;
             vertical-align: middle;
         }
 
         &.coveshow {
-          opacity: 1;
-          visibility: visible;
-          .content {
             opacity: 1;
-          }
+            visibility: visible;
+            .content {
+                opacity: 1;
+            }
         }
     }
 
@@ -32,8 +32,8 @@
         opacity: 0;
         position: relative;
         display: inline-block;
-        transition-property:transform, opacity; 
-        transition-timing-function:ease;
+        transition-property: transform, opacity;
+        transition-timing-function: ease;
     }
 
     .animate_zoom_in {
@@ -44,7 +44,7 @@
             .content {
                 transform: scale3d(1, 1, 1);
             }
-          }
+        }
     }
 
     .animate_zoom_in_left {
@@ -97,9 +97,9 @@
         }
         &.coveshow {
             .content {
-              transform: translateX(0);
+                transform: translateX(0);
             }
-          }
+        }
     }
 
     .animate_in_right {
@@ -108,9 +108,9 @@
         }
         &.coveshow {
             .content {
-              transform: translateX(0);
+                transform: translateX(0);
             }
-          }
+        }
     }
 
     .animate_in_down {
@@ -119,9 +119,9 @@
         }
         &.coveshow {
             .content {
-              transform: translateY(0);
+                transform: translateY(0);
             }
-          }
+        }
     }
 
     .animate_in_up {
@@ -130,9 +130,39 @@
         }
         &.coveshow {
             .content {
-              transform: translateY(0);
+                transform: translateY(0);
             }
-          }
+        }
+    }
+
+    .animate_flip_in_X {
+        .content {
+            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+            transition-timing-function: ease-in;
+            opacity: 0;
+        }
+        &.coveshow {
+            .content {
+                transform: perspective(0);
+                transition-timing-function: ease-in;
+                opacity: 1;
+            }
+        }
+    }
+
+    .animate_flip_in_Y {
+        .content {
+            transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+            transition-timing-function: ease-in;
+            opacity: 0;
+        }
+        &.coveshow {
+            .content {
+                transform: perspective(0);
+                transition-timing-function: ease-in;
+                opacity: 1;
+            }
+        }
     }
 
     .modify {

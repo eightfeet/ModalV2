@@ -80,6 +80,12 @@ export default function (elements, config, id) {
         case 'zoomIn':
             formStyle = s.animate_zoom_in;
             break;
+        case 'flipInX':
+            formStyle = s.animate_flip_in_X;
+            break;
+        case 'flipInY':
+            formStyle = s.animate_flip_in_Y;
+            break;
         default:
             formStyle = s.animate_zoom_in;
             break;

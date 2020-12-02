@@ -39,6 +39,8 @@
             <option value="zoomInDown">zoomInDown</option>
             <option value="zoomInLeft">zoomInLeft</option>
             <option value="zoomInRight">zoomInRight</option>
+            <option value="flipInX">flipInX</option>
+            <option value="flipInY">flipInY</option>
         </select>
         <div id="example1">click me to show</div>
         <br />
@@ -56,7 +58,7 @@
     var effectDom = document.getElementById('effect');
 
     effectDom.onchange = function(e) {
-        effect = e.target.value
+        effect = e.target.value;
     }
 
     var newModal1 = new ___Modal___({
