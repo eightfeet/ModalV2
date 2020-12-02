@@ -10,7 +10,7 @@ export interface Parameters {
      *  duration 持续时间
      */
     animation?: {
-        form?: 'fadeInLeft' | 'fadeInRight' | 'fadeInDown' | 'fadeInUp' | 'zoomInLeft' | 'zoomInRight' | 'zoomInDown' | 'zoomInUp' | 'zoomIn';
+        form?: 'fadeInLeft' | 'fadeInRight' | 'fadeInDown' | 'fadeInUp' | 'zoomInLeft' | 'zoomInRight' | 'zoomInDown' | 'zoomInUp' | 'zoomIn' | 'flipInX' | 'flipInY';
         duration?: string | number;
     };
     /**

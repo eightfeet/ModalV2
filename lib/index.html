@@ -16,13 +16,13 @@
 
         #indom {
             position:relative; width:320px; height:500px; font-size: 11px; margin: 0 auto
-        }</style></head><body><div class="wrap">chose animation &nbsp;&nbsp;<select id="effect"><option value="fadeInUp">fadeInUp</option><option value="fadeInDown">fadeInDown</option><option value="fadeInLeft">fadeInLeft</option><option value="fadeInRight">fadeInRight</option><option selected="selected" value="zoomIn">zoomIn</option><option value="zoomInUp">zoomInUp</option><option value="zoomInDown">zoomInDown</option><option value="zoomInLeft">zoomInLeft</option><option value="zoomInRight">zoomInRight</option></select><div id="example1">click me to show</div><br><div id="example2">click me to show modal in box</div><br><div style="text-align: center"><a href="https://github.com/eightfeet/ModalV2/blob/master/README.md">Documents</a></div><div id="indom"></div></div><div style="height: 2000px"></div><script type="text/javascript" src="index.js"></script></body><script>var effect = 'zoomIn';
+        }</style></head><body><div class="wrap">chose animation &nbsp;&nbsp;<select id="effect"><option value="fadeInUp">fadeInUp</option><option value="fadeInDown">fadeInDown</option><option value="fadeInLeft">fadeInLeft</option><option value="fadeInRight">fadeInRight</option><option selected="selected" value="zoomIn">zoomIn</option><option value="zoomInUp">zoomInUp</option><option value="zoomInDown">zoomInDown</option><option value="zoomInLeft">zoomInLeft</option><option value="zoomInRight">zoomInRight</option><option value="flipInX">flipInX</option><option value="flipInY">flipInY</option></select><div id="example1">click me to show</div><br><div id="example2">click me to show modal in box</div><br><div style="text-align: center"><a href="https://github.com/eightfeet/ModalV2/blob/master/README.md">Documents</a></div><div id="indom"></div></div><div style="height: 2000px"></div><script type="text/javascript" src="index.js"></script></body><script>var effect = 'zoomIn';
     var btn1 = document.getElementById('example1');
     var btn2 = document.getElementById('example2');
     var effectDom = document.getElementById('effect');
 
     effectDom.onchange = function(e) {
-        effect = e.target.value
+        effect = e.target.value;
     }
 
     var newModal1 = new ___Modal___({
