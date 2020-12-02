@@ -36,7 +36,7 @@
         transition-timing-function: ease;
     }
 
-    .animate_zoom_in {
+    .zoomIn {
         .content {
             transform: scale3d(0, 0, 0);
         }
@@ -47,7 +47,7 @@
         }
     }
 
-    .animate_zoom_in_left {
+    .zoomInLeft {
         .content {
             transform: scale3d(0, 0, 0) translate3d(-50em, 0, 0);
         }
@@ -58,7 +58,7 @@
         }
     }
 
-    .animate_zoom_in_right {
+    .zoomInRight {
         .content {
             transform: scale3d(0, 0, 0) translate3d(50em, 0, 0);
         }
@@ -69,7 +69,7 @@
         }
     }
 
-    .animate_zoom_in_down {
+    .zoomInDown {
         .content {
             transform: scale3d(0, 0, 0) translate3d(0, -50em, 0);
         }
@@ -80,7 +80,7 @@
         }
     }
 
-    .animate_zoom_in_up {
+    .zoomInUp {
         .content {
             transform: scale3d(0, 0, 0) translate3d(0, 50em, 0);
         }
@@ -91,7 +91,7 @@
         }
     }
 
-    .animate_in_left {
+    .fadeInLeft {
         .content {
             transform: translateX(-50em);
         }
@@ -102,7 +102,7 @@
         }
     }
 
-    .animate_in_right {
+    .fadeInRight {
         .content {
             transform: translateX(50em);
         }
@@ -113,7 +113,7 @@
         }
     }
 
-    .animate_in_down {
+    .fadeInDown {
         .content {
             transform: translateY(-50em);
         }
@@ -124,7 +124,7 @@
         }
     }
 
-    .animate_in_up {
+    .fadeInUp {
         .content {
             transform: translateY(50em);
         }
@@ -134,8 +134,8 @@
             }
         }
     }
-
-    .animate_flip_in_X {
+    
+    .flipInX {
         .content {
             transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
             transition-timing-function: ease-in;
@@ -150,7 +150,7 @@
         }
     }
 
-    .animate_flip_in_Y {
+    .flipInY {
         .content {
             transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
             transition-timing-function: ease-in;

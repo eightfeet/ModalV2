@@ -50,47 +50,7 @@ export default function (elements, config, id) {
 
     const transitionDuration = `transition-duration: ${timeset}; -webkit-transition-duration: ${timeset};`;
 
-    let formStyle = '';
-
-    switch (form) {
-        case 'fadeInLeft':
-            formStyle = s.animate_in_left;
-            break;
-        case 'fadeInRight':
-            formStyle = s.animate_in_right;
-            break;
-        case 'fadeInDown':
-            formStyle = s.animate_in_down;
-            break;
-        case 'fadeInUp':
-            formStyle = s.animate_in_up;
-            break;
-        case 'zoomInLeft':
-            formStyle = s.animate_zoom_in_left;
-            break;
-        case 'zoomInRight':
-            formStyle = s.animate_zoom_in_right;
-            break;
-        case 'zoomInDown':
-            formStyle = s.animate_zoom_in_down;
-            break;
-        case 'zoomInUp':
-            formStyle = s.animate_zoom_in_up;
-            break;
-        case 'zoomIn':
-            formStyle = s.animate_zoom_in;
-            break;
-        case 'flipInX':
-            formStyle = s.animate_flip_in_X;
-            break;
-        case 'flipInY':
-            formStyle = s.animate_flip_in_Y;
-            break;
-        default:
-            formStyle = s.animate_zoom_in;
-            break;
-    }
-
+    const formStyle = s[form || 'zoomIn'];
     const overlayStyle = createInlineStyles(overlay);
     const contentStyle = createInlineStyles(content);
     const closeStyle = createInlineStyles(close);
