@@ -32,7 +32,7 @@ export default function (elements, config, id) {
                 s.modify
             }" style="${createInlineStyles(elementStyle)} z-index: ${
                 layIndex + index * 2
-            }">&nbsp;</div>`;
+            }; pointer-events: none;">&nbsp;</div>`;
     }
 
     const { form, duration } = animation || {};
