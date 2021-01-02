@@ -170,8 +170,8 @@ const newModal = new Modal({
     
 ```
 
-
-### case react useHooks
+## react hook
+- ### case react useModal hook
 
 ```typescript
     import { useEffect, useRef, useCallback } from "react";
@@ -204,5 +204,39 @@ const newModal = new Modal({
 
     export default useModal;
 
+```
+
+- ### useModal 
+
+```typescript
+
+    import React from "react";
+    import useModal from "./hooks/useModal";
+
+    function App() {
+        const { createModal, hideModal } = useModal({
+            style: {
+                content: {
+                    width: '301px'
+                }
+            }
+        });
+
+        return (
+            <div className="App">
+            <button
+                onClick={() =>
+                createModal({ article: "<div>messages!</div>" }).then(() =>
+                    setTimeout(hideModal, 1000)
+                )
+                }
+            >
+                弹窗
+            </button>
+            </div>
+        );
+    }
+
+    export default App;
 ```
 
