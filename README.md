@@ -102,6 +102,8 @@ myModal.create({
 
 ```javascript
     import {saferInnerHtml} from '@eightfeet/modal';
+    const htmlStr = saferInnerHtml('<img src="x" onerror="alert(1)" />')
+    console.log(htmlStr); // <img src="x" />
 ```
 
 #### case
