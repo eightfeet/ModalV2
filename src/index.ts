@@ -5,8 +5,9 @@ if (window.Promise === undefined) {
 
 import Modal, {Parameters} from './Modal';
 import { createInlineStyles } from './inlineStyle';
+import saferInnerHtml from './saferInnerHtml';
 export default Modal;
-export { createInlineStyles };
+export { createInlineStyles, saferInnerHtml };
 
 export type ModalParameters = Parameters;
 export type ModalStyle = Parameters["style"];

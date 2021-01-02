@@ -4,6 +4,7 @@ import { createDom, removeDom } from './htmlFactory';
 import template from './template';
 import { onceTransitionEnd } from './webAnimationClub';
 import { createInlineStyles } from './inlineStyle';
+import saferInnerHtml from './saferInnerHtml';
 
 const commonErr = 'Modal is not created or Modal is removed!';
 
@@ -190,7 +191,7 @@ class Modal {
             console.warn('已创建modal时 modal.create === modal.show');
             return Promise.resolve();
         }
-        await createDom(template(elements, other, id), id, parentId, emBase);
+        await createDom(saferInnerHtml(template(elements, other, id)), id, parentId, emBase);
         this.state.display = true;
         modalElement = document.getElementById(id);
         const wrapElement = modalElement.querySelector(`.${s.cove}`);

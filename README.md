@@ -88,7 +88,21 @@ myModal.create({
 
    显示页面弹窗，如果创建的弹窗隐藏时，调用此方法显示弹窗。
 
+### createInlineStyles
 
+    createInlineStyles: 创建行内样式、 
+
+```javascript
+    import {createInlineStyles} from '@eightfeet/modal';
+``` 
+    
+### saferInnerHtml  
+    InnerHtml 具有一定安全隐患，saferInnerHtml用于过滤模版中的危险脚本，让你安全使用InnerHtml
+    避免XSS 攻击，默认InnerHtml都有通过saferInnerHtml转译为安全html
+
+```javascript
+    import {saferInnerHtml} from '@eightfeet/modal';
+```
 
 #### case
 
