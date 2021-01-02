@@ -212,8 +212,8 @@ class Modal {
     remove = () =>
         new Promise((resolve) => {
             const modalElement = document.getElementById(this.state.id);
-            const wrapElement = modalElement.querySelector(`.${s.cove}`);
-            wrapElement.classList.remove(s.coveshow);
+            const wrapElement = modalElement?.querySelector(`.${s.cove}`);
+            wrapElement?.classList.remove(s.coveshow);
             resolve(wrapElement);
         })
             .then((wrapElement: HTMLElement) => onceTransitionEnd(wrapElement))
@@ -227,7 +227,7 @@ class Modal {
     show = async () => {
         const { id } = this.state;
         const modalElement = document.getElementById(id);
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             if (!modalElement) {
                 reject(commonErr);
                 return;
