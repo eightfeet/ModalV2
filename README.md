@@ -185,7 +185,7 @@ const newModal = new Modal({
         if (ref.current) {
             const previousModal = ((ref.current as unknown) as Modal);
             if (document.getElementById(previousModal.state.id as string)) {
-            previousModal.remove();
+                previousModal.remove();
             }
         }
         }
