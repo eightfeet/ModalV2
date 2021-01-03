@@ -35,6 +35,10 @@
         transition-property: transform, opacity;
         transition-timing-function: ease;
         pointer-events: none;
+        
+        * {
+            pointer-events: painted;
+        }
     }
 
     .zoomIn {
@@ -175,7 +179,6 @@
         background-color: #fff;
         margin: 0 auto;
         position: relative;
-        pointer-events: painted;
     }
 
     .left {
