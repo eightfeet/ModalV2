@@ -34,6 +34,7 @@
         display: inline-block;
         transition-property: transform, opacity;
         transition-timing-function: ease;
+        pointer-events: none;
     }
 
     .zoomIn {
@@ -174,6 +175,7 @@
         background-color: #fff;
         margin: 0 auto;
         position: relative;
+        pointer-events: painted;
     }
 
     .left {

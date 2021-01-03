@@ -69,7 +69,7 @@
             //     duration: 0.01
             // }, // 启用动画 默认true
             closable: true, // 可关闭 默认true
-            shouldCloseOnOverlayClick: false, // 点击背景层关闭弹窗 默认false
+            shouldCloseOnOverlayClick: true, // 点击背景层关闭弹窗 默认false
             style: { // 定义modal样式 {overlay: 覆盖层, content: 内容区, close: 关闭按钮}
                 overlay: {
                     backgroundColor: 'rgba(0,0,0,0.5)'
@@ -182,9 +182,9 @@
             article: '<div id="close">Click on me to close.</div>',
             footer: '<div>footer</div>'
         }).then(function(){
-            document.getElementById('close').onclick=function(){
-                newModal1.hide();
-            }
+            // document.getElementById('close').onclick=function(){
+            //     newModal1.hide();
+            // }
         });
     }
 

@@ -146,7 +146,10 @@ class Modal {
         const wrapElement: HTMLElement = modalElement.querySelector(
             `.${s.cove}`
         );
+        
         if (shouldCloseOnOverlayClick === true && wrapElement) {
+            // 阻止冒泡
+            this.state.contentDom.onclick = e => e.stopPropagation();
             wrapElement.onclick = () =>
                 this.hide(doNotRemove).then(() => {
                     if (onCancel && typeof onCancel === 'function') {
