@@ -1,4 +1,3 @@
-
 /**
  * saferInnerHtml
  * @param app The element to inject markup into
@@ -6,142 +5,156 @@
  * @param append [optional] If true, append string to existing content instead of replacing it
  */
 export default function (template: string) {
-	//
-	// div
-	//
-	const div = document?.createElement('div');
+    //
+    // div
+    //
+    const div = document?.createElement('div');
 
-	//
-	// Variables
-	//
+    //
+    // Variables
+    //
 
-	let parser = null;
+    let parser = null;
 
-	//
-	// Methods
-	//
+    //
+    // Methods
+    //
 
-	let supports = function () {
-		if (!Array.from || !window.DOMParser) return false;
-		parser = parser || new DOMParser();
-		try {
-			parser.parseFromString("x", "text/html");
-		} catch (err) {
-			return false;
-		}
-		return true;
-	};
+    let supports = function () {
+        if (!Array.from || !window.DOMParser) return false;
+        parser = parser || new DOMParser();
+        try {
+            parser.parseFromString('x', 'text/html');
+        } catch (err) {
+            return false;
+        }
+        return true;
+    };
 
-	/**
-   * Add attributes to an element
-   * @param {Node}  elem The element
-   * @param {Array} atts The attributes to add
-   */
-	let addAttributes = function (elem, atts) {
-		atts.forEach((attribute) => {
-			// If the attribute is a class, use className
-			// Else if it starts with `data-`, use setAttribute()
-			// Otherwise, set is as a property of the element
-			if (attribute.att === "class") {
+    /**
+     * Add attributes to an element
+     * @param {Node}  elem The element
+     * @param {Array} atts The attributes to add
+     */
+    let addAttributes = function (elem, atts) {
+        atts.forEach((attribute) => {
+            // If the attribute is a class, use className
+            // Else if it starts with `data-`, use setAttribute()
+            // Otherwise, set is as a property of the element
+			if (attribute.att === 'class') {
 				elem.className = attribute.value;
-			} else if (attribute.att.slice(0, 5) === "data-") {
-				elem.setAttribute(attribute.att, attribute.value || "");
+			} else if (attribute.att.slice(0, 5) === 'data-') {
+				elem.setAttribute(attribute.att, attribute.value || '');
+			} else if (attribute.att === 'style') {
+				elem.setAttribute(attribute.att, attribute.value || '');
 			} else {
-				elem[attribute.att] = attribute.value || "";
+				elem[attribute.att] = attribute.value || '';
 			}
-		});
-	};
+            
+        });
+    };
 
-	/**
-   * Create an array of the attributes on an element
-   * @param  {NamedNodeMap} attributes The attributes on an element
-   * @return {Array}                   The attributes on an element as an array of key/value pairs
-   */
-	let getAttributes = function (attributes) {
-		return Array.from(attributes).map((attribute: any) => {
-			return {
-				att: attribute.name,
-				value: attribute.value
-			};
-		});
-	};
+    /**
+     * Create an array of the attributes on an element
+     * @param  {NamedNodeMap} attributes The attributes on an element
+     * @return {Array}                   The attributes on an element as an array of key/value pairs
+     */
+    let getAttributes = function (attributes) {
+        return Array.from(attributes).map((attribute: any) => {
+            return {
+                att: attribute.name,
+                value: attribute.value,
+            };
+        });
+    };
 
-	/**
-   * Make an HTML element
-   * @param  {Object} elem The element details
-   * @return {Node}        The HTML element
-   */
-	const makeElem = function (elem) {
-		// Create the element
-		let node =
-      elem.type === "text" ? document.createTextNode(elem.content) : document.createElement(elem.type);
+    /**
+     * Make an HTML element
+     * @param  {Object} elem The element details
+     * @return {Node}        The HTML element
+     */
+    const makeElem = function (elem) {
+        // Create the element
+        let node =
+            elem.type === 'text'
+                ? document.createTextNode(elem.content)
+                : document.createElement(elem.type);
+        // Add attributes
+        addAttributes(node, elem.atts);
+        // If the element has child nodes, create them
+        // Otherwise, add textContent
+        if (elem.children.length > 0) {
+			try {
+				elem.children.forEach((childElem) => {
+					node.appendChild(makeElem(childElem));
+				});
+			} catch (error) {
+				console.log(elem)
+				console.log(error)
+				throw error;
+			}
+            
+        } else if (elem.type !== 'text') {
+            node.textContent = elem.content;
+        }
+        return node;
+    };
 
-		// Add attributes
-		addAttributes(node, elem.atts);
+    /**
+     * Render the template items to the DOM
+     * @param  {Array} map A map of the items to inject into the DOM
+     */
+    let renderToDOM = function (map) {
+        map.forEach((node) => {
+            div.appendChild(makeElem(node));
+        });
+    };
 
-		// If the element has child nodes, create them
-		// Otherwise, add textContent
-		if (elem.children.length > 0) {
-			elem.children.forEach((childElem) => {
-				node.appendChild(makeElem(childElem));
-			});
-		} else if (elem.type !== "text") {
-			node.textContent = elem.content;
-		}
+    /**
+     * Create a DOM Tree Map for an element
+     * @param  {Node}   element The element to map
+     * @return {Array}          A DOM tree map
+     */
+    const createDOMMap = function (element) {
+        let map = [];
+        Array.from(element.childNodes).forEach((node: HTMLElement) => {
+            map.push({
+                content:
+                    node.childNodes && node.childNodes.length > 0
+                        ? null
+                        : node.textContent,
+                atts: node.nodeType === 3 ? [] : getAttributes(node.attributes),
+                type: node.nodeType === 3 ? 'text' : node.tagName.toLowerCase(),
+                children: createDOMMap(node),
+            });
+        });
+        return map;
+    };
 
-		return node;
-	};
+    /**
+     * Convert a template string into HTML DOM nodes
+     * @param  {String} str The template string
+     * @return {Node}       The template HTML
+     */
+    let stringToHTML = function (str) {
+        parser = parser || new DOMParser();
+        let doc = parser.parseFromString(str, 'text/html');
+        return doc.body;
+    };
 
-	/**
-   * Render the template items to the DOM
-   * @param  {Array} map A map of the items to inject into the DOM
-   */
-	let renderToDOM = function (map) {
-		map.forEach((node) => {
-			div.appendChild(makeElem(node));
-		});
-	};
+    //
+    // Inits
+    //
 
-	/**
-   * Create a DOM Tree Map for an element
-   * @param  {Node}   element The element to map
-   * @return {Array}          A DOM tree map
-   */
-	const createDOMMap = function (element) {
-		let map = [];
-		Array.from(element.childNodes).forEach((node: HTMLElement) => {
-			map.push({
-				content:
-		  node.childNodes && node.childNodes.length > 0
-		  ? null : node.textContent,
-				atts: node.nodeType === 3 ? [] : getAttributes(node.attributes),
-				type: node.nodeType === 3 ? "text" : node.tagName.toLowerCase(),
-				children: createDOMMap(node)
-			});
-		});
-		return map;
-	};
+    // Check for browser support
+    if (!supports())
+        throw new Error('saferInnerHtml: Your browser is not supported.');
 
-	/**
-   * Convert a template string into HTML DOM nodes
-   * @param  {String} str The template string
-   * @return {Node}       The template HTML
-   */
-	let stringToHTML = function (str) {
-		parser = parser || new DOMParser();
-		let doc = parser.parseFromString(str, "text/html");
-		return doc.body;
-	};
-
-	//
-	// Inits
-	//
-
-	// Check for browser support
-	if (!supports())
-		throw new Error("saferInnerHtml: Your browser is not supported.");
-	renderToDOM(createDOMMap(stringToHTML(template)));
-
-	// get safeDom
-	return div.innerHTML;
+    try {
+        renderToDOM(createDOMMap(stringToHTML(template)));
+        // get safeDom
+        return div.innerHTML;
+    } catch (error) {
+		return template
+	}
 }
