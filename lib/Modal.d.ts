@@ -118,6 +118,6 @@ declare class Modal {
      * @param {boolean} 是否移除弹窗 =true时，不移除Model仅隐藏
      * @memberof Modal
      */
-    hide: (doNotRemove: boolean) => Promise<unknown>;
+    hide: (doNotRemove: boolean) => Promise<void>;
 }
 export default Modal;
