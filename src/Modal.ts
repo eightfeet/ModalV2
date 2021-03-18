@@ -151,20 +151,12 @@ class Modal {
             // 阻止冒泡
             this.state.contentDom.onclick = e => e.stopPropagation();
             wrapElement.onclick = () =>
-                this.hide(doNotRemove).then(() => {
-                    if (onCancel && typeof onCancel === 'function') {
-                        onCancel();
-                    }
-                });
+                this.hide(doNotRemove);
         }
         if (elementClose) {
             elementClose.onclick = (e) => {
                 e.stopPropagation();
-                this.hide(doNotRemove).then(() => {
-                    if (onCancel && typeof onCancel === 'function') {
-                        onCancel();
-                    }
-                });
+                this.hide(doNotRemove);
             };
         }
     };
@@ -283,9 +275,19 @@ class Modal {
         }
         this.state.display = false;
         if (doNotRemove === true) {
-            return this.unvisible();
+            return this.unvisible().then(() => {
+                const { onCancel } = this.state;
+                if (onCancel && typeof onCancel === 'function') {
+                    onCancel();
+                }
+            });
         }
-        return this.remove();
+        return this.remove().then(() => {
+            const { onCancel } = this.state;
+            if (onCancel && typeof onCancel === 'function') {
+                onCancel();
+            }
+        });
     };
 }
 
