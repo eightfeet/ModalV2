@@ -113,6 +113,7 @@ class Modal {
             style,
             emBase,
             onCancel,
+            customModifyZIndex
         } = parameter || {};
 
         // 内部参数
@@ -131,7 +132,7 @@ class Modal {
             contentDom: null,
             emBase,
             onCancel,
-            customModifyZIndex: false,
+            customModifyZIndex,
             display: false,
         };
     }
