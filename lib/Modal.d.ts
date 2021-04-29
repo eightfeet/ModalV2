@@ -60,6 +60,10 @@ export interface Parameters {
      * 关闭
      */
     onCancel?: () => void;
+    /**
+     * 自定义修饰层层级
+     */
+    customModifyZIndex?: boolean;
 }
 declare class Modal {
     state: Parameters & {
