@@ -81,6 +81,10 @@ export interface Parameters {
      * 关闭
      */
     onCancel?: () => void;
+    /**
+     * 自定义修饰层层级 
+     */
+    customModifyZIndex?: boolean;
 }
 
 class Modal {
@@ -127,6 +131,7 @@ class Modal {
             contentDom: null,
             emBase,
             onCancel,
+            customModifyZIndex: false,
             display: false,
         };
     }
