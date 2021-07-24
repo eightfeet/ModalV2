@@ -188,7 +188,7 @@ const newModal = new Modal({
 
 ## react 
 ### Modal组件最佳实践 
-[demo](./src/ReactModal.tsx)
+[demo](./ReactModal.tsx)
 ```typescript
     <Modal 
         visible={visible}
