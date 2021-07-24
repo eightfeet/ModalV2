@@ -189,6 +189,16 @@ const newModal = new Modal({
 ## react 
 ### Modal组件最佳实践 
 [demo](./src/ReactModal.tsx)
+```typescript
+    <Modal 
+        visible={visible}
+        onCancel={() => setVisible(false)}
+        overlayStyle={{background: 'rgba(0, 255, 0, 0.5)'}}
+    >
+        <div>这是一个弹窗</div>
+        <button onClick={() => setVisible(false)}>关闭弹窗</button>
+    </Modal>
+```
 
 ### react hook
 - ### case react useModal hook
