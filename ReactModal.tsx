@@ -15,6 +15,7 @@
    zIndex?: ModalParameters["zIndex"];
    closable?: ModalParameters["closable"];
    overlayStyle?: CSS.Properties;
+   wrapStyle?: CSS.Properties;
    contentStyle?: CSS.Properties;
    modifyStyle?: CSS.Properties[];
    closeStyle?: CSS.Properties;
@@ -42,25 +43,36 @@
    wrapStyle,
    contentStyle,
    modifyStyle,
-   closeStyle,
+   closeStyle={},
    getModal,
    onCancel,
    className,
    ...other
  }) => {
    // 创建初始化
-   const MDRef = useRef<MD>(
-     new MD({
-       ...other,
-       style: {
-         overlay: overlayStyle,
-         wrap: wrapStyle,
-         content: contentStyle,
-         modify: modifyStyle,
-         close: closeStyle,
-       },
-     })
-   );
+   const MDRef = useRef<MD>(new MD({
+     ...other,
+     style: {
+       overlay: overlayStyle,
+       wrap: wrapStyle,
+       content: contentStyle,
+       modify: modifyStyle,
+       close: closeStyle,
+     },
+   }));
+ 
+   useEffect(() => {
+     MDRef.current = new MD({
+         ...other,
+         style: {
+           overlay: overlayStyle,
+           wrap: wrapStyle,
+           content: contentStyle,
+           modify: modifyStyle,
+           close: closeStyle,
+         },
+       })
+   }, [closeStyle, contentStyle, modifyStyle, other, overlayStyle, wrapStyle]);
  
    const checkVisible = useRef<boolean>();
    useEffect(() => {
