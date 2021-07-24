@@ -35,7 +35,7 @@ myModal.create({
 | parentId                  | 所挂载的父级ID用于做局部弹窗 | 否       | 默认挂在body下面，指定父级dom时将挂载在父级dom下，配合css实现局部弹窗 | String   |
 | closable                  | 是否可关闭                   | 否       | 默认true                                                     | Boolean  |
 | shouldCloseOnOverlayClick | 是否点击蒙层关闭弹窗         | 否       | 默认false                                                    | Boolean  |
-| style                     | 弹窗样式                     | 是       | 定义modal样式<br /> {<br />    overlay: 覆盖层, <br />    content: 内容区, <br />    header: 头部, <br />    article: 内容区, <br />    close: 关闭按钮, <br />    modify: 修饰器<br />}, <br />modify修饰器 是一个数组，每个数组元素对应会创建一个 基于弹窗的绝对定位div层，用于修饰弹窗（参考case） | Object   |
+| style                     | 弹窗样式                     | 是       | 定义modal样式<br /> {<br />    overlay: 覆盖层, <br />    wrap: 模块包裹层, <br />    content: 内容区, <br />    header: 头部, <br />    article: 内容区, <br />    close: 关闭按钮, <br />    modify: 修饰器<br />}, <br />modify修饰器 是一个数组，每个数组元素对应会创建一个 基于弹窗的绝对定位div层，用于修饰弹窗（参考case） | Object   |
 | animation                 | 弹窗动画                     | 否       | {<br />    form: 弹窗动画形式，参考animation附表,<br />    duration：持续时长<br />} | Object   |
 | onCancel                  | 关闭弹窗                     |          | 关闭弹窗时的回调                                             | Function |
 
@@ -186,7 +186,11 @@ const newModal = new Modal({
     
 ```
 
-## react hook
+## react 
+### Modal组件最佳实践 
+[demo](./src/ReactModal.tsx)
+
+### react hook
 - ### case react useModal hook
 
 ```typescript

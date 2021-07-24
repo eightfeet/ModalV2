@@ -10,7 +10,7 @@ import { createInlineStyles } from './inlineStyle';
  */
 export default function (elements, config, id) {
 	const { style, zIndex, closable, animation, customModifyZIndex } = config || {};
-	const { overlay, content, modify, close, header, article, footer } =
+	const { overlay, wrap, content, modify, close, header, article, footer } =
 		style || {};
 
 	const modalId = id || 'modal';
@@ -50,6 +50,7 @@ export default function (elements, config, id) {
 
 	const formStyle = s[form || 'zoomIn'];
 	const overlayStyle = createInlineStyles(overlay);
+	const wrapStyle = createInlineStyles(wrap);
 	const contentStyle = createInlineStyles(content);
 	const closeStyle = createInlineStyles(close);
 	const headerStyle = createInlineStyles(header);
@@ -60,7 +61,7 @@ export default function (elements, config, id) {
 			<div class="${modalId}_overlay ${s.cove
 } ${formStyle}" style="z-index:${layIndex}; ${transitionDuration} ${overlayStyle || ''
 }">
-				<div class="${modalId}_content_wrap ${s.wrap}">
+				<div class="${modalId}_content_wrap ${s.wrap}" style="${wrapStyle || ''}">
 					<div class="${modalId}_content ${s.content}" style="${transitionDuration}">
 						${doms || ''}
 						<div class="${modalId}_modules ${s.modules}" ${content
