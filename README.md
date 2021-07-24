@@ -194,31 +194,40 @@ const newModal = new Modal({
 - ### case react useModal hook
 
 ```typescript
-    import { useEffect, useRef, useCallback } from 'react';
-    import Modal, { ModalParameters } from '@eightfeet/modal';
+    import { useRef, useCallback, useMemo, useEffect } from "react";
+    import Modal, { ModalParameters } from "@eightfeet/modal";
 
     const useModal = (parameters: ModalParameters) => {
-        const ref = useRef<Modal | null>(null);
-        useEffect(() => {
-            ref.current = new Modal(parameters);
-            return () => {
-                if (ref.current) {
-                    const previousModal = ref.current;
-                    if (document.getElementById(previousModal.state.id || '')) {
-                        previousModal.remove();
-                    }
-                }
-            };
-        }, [parameters]);
+    const ref = useRef<Modal>();
+    useMemo(() => {
+        ref.current = new Modal(parameters);
+    }, [parameters]);
 
-        const createModal = useCallback<Modal['create']>(async (data) => ref.current?.create(data), []);
+    useEffect(() => {
+        return () => {
+        if (ref.current) {
+            const previousModal = ref.current;
+            if (document.getElementById(previousModal.state.id as string)) {
+            previousModal.remove();
+            }
+        }
+        }
+    }, [])
 
-        const hideModal = useCallback<Modal['hide']>(async (data) => ref.current?.hide(data), []);
+    const createModal = useCallback<Modal['create']>((data) => {
+        return ref.current?.create(data) || Promise.reject('modal is not ready yet!');
+    }, []);
 
-        return { createModal, hideModal };
+    const hideModal = useCallback<Modal["hide"]>((doNotRemove) => {
+        return ref.current?.hide(doNotRemove) || Promise.reject('modal is not ready yet!');
+    }, []);
+
+    return { createModal, hideModal, modal: ref.current }
     };
 
     export default useModal;
+
+
 
 
 ```
