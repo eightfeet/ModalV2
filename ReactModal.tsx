@@ -61,19 +61,6 @@
      },
    }));
  
-   useEffect(() => {
-     MDRef.current = new MD({
-         ...other,
-         style: {
-           overlay: overlayStyle,
-           wrap: wrapStyle,
-           content: contentStyle,
-           modify: modifyStyle,
-           close: closeStyle,
-         },
-       })
-   }, [closeStyle, contentStyle, modifyStyle, other, overlayStyle, wrapStyle]);
- 
    const checkVisible = useRef<boolean>();
    useEffect(() => {
      checkVisible.current = !!visible;
