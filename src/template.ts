@@ -30,7 +30,7 @@ export default function (elements, config, id) {
 			`<div class="${modalId}_modify ${s.modify
 			}" style="${createInlineStyles(elementStyle)} 
 				${customModifyZIndex === true ? '' : `z-index: ${layIndex + index * 2};`} 
-			pointer-events: none;">&nbsp;</div>`;
+			pointer-events: none;"></div>`;
 	}
 
 	const { form, duration } = animation || {};
