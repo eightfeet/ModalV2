@@ -15,7 +15,6 @@ export default function (elements, config, id) {
 
 	const modalId = id || 'modal';
 	const layIndex = zIndex * 1 || 100;
-	console.log('customModifyZIndex', customModifyZIndex);
 	const operateElements = elements || {};
 	const operateModify = modify || [];
 	let doms = null;
@@ -27,10 +26,7 @@ export default function (elements, config, id) {
 		}
 		doms =
 			(doms || '') +
-			`<div class="${modalId}_modify ${s.modify
-			}" style="${createInlineStyles(elementStyle)} 
-				${customModifyZIndex === true ? '' : `z-index: ${layIndex + index * 2};`} 
-			pointer-events: none;"></div>`;
+			`<div class="${modalId}_modify ${s.modify}" style="${createInlineStyles(elementStyle)} ${customModifyZIndex === true ? '' : `z-index: ${layIndex + index * 2};`} pointer-events: none;"></div>`;
 	}
 
 	const { form, duration } = animation || {};
@@ -57,53 +53,13 @@ export default function (elements, config, id) {
 	const articleStyle = createInlineStyles(article);
 	const footerStyle = createInlineStyles(footer);
 
-	return `<div class="${modalId}_wrap ${s.modal}">
-			<div class="${modalId}_overlay ${s.cove
-} ${formStyle}" style="z-index:${layIndex}; ${transitionDuration} ${overlayStyle || ''
-}">
-				<div class="${modalId}_content_wrap ${s.wrap}" style="${wrapStyle || ''}">
-					<div class="${modalId}_content ${s.content}" style="${transitionDuration}">
-						${doms || ''}
-						<div class="${modalId}_modules ${s.modules}" ${content
-	? `style="z-index:${layIndex}; box-sizing: border-box; ${contentStyle || ''
-	}"`
-	: ''
-}>
-							${operateElements.header
-		? `<div class="${modalId}_header ${s.center
-		}" ${headerStyle
-			? `style="${headerStyle}"`
-			: ''
-		}>${operateElements.header}</div>`
-		: ''
-}
-							${operateElements.article
-		? `<div class="${modalId}_article ${s.left
-		}" ${articleStyle
-			? `style="${articleStyle}"`
-			: ''
-		}>${operateElements.article}</div>`
-		: ''
-}
-							${operateElements.footer
-		? `<div class="${modalId}_footer ${s.center
-		}" ${footerStyle
-			? `style="${footerStyle}"`
-			: ''
-		}>${operateElements.footer}</div>`
-		: ''
-}
-						</div>
-						${closable
-		? close
-			? `<div class="${modalId}_close ${s.close
-			}" style="${closeStyle || ''} z-index: ${layIndex + operateModify.length * 2
-			}"></div>`
-			: ''
-		: ''
-}
-					</div>
-				</div>
-			</div>
-		</div>`;
+	return `<div class="${modalId}_wrap ${s.modal}"> <div class="${modalId}_overlay ${s.cove } ${formStyle}" style="z-index:${layIndex}; ${transitionDuration} ${overlayStyle || ''}">` +
+	`<div class="${modalId}_content_wrap ${s.wrap}" style="${wrapStyle || ''}">` +
+	`<div class="${modalId}_content ${s.content}" style="${transitionDuration}"><div> ${doms || ''} </div>` +
+	`<div class="${modalId}_modules ${s.modules}" ${content ? `style="z-index:${layIndex}; box-sizing: border-box; ${contentStyle || ''}"` : ''}>` +
+	`${operateElements.header ? `<div class="${modalId}_header ${s.center}" ${headerStyle? `style="${headerStyle}"` : '' }>${operateElements.header}</div>` : ''}` +
+	`${operateElements.article ? `<div class="${modalId}_article ${s.left}" ${articleStyle ? `style="${articleStyle}"` : ''}>${operateElements.article}</div>` : ''}` +
+	`${operateElements.footer ? `<div class="${modalId}_footer ${s.center}" ${footerStyle ? `style="${footerStyle}"` : '' }>${operateElements.footer}</div>` : '' }</div>` +
+	`${closable ? close ? `<div class="${modalId}_close ${s.close}" style="${closeStyle || ''} z-index: ${layIndex + operateModify.length * 2}"></div>` : '' : ''}` +
+	`</div></div></div></div>`;
 }
