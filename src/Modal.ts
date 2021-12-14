@@ -55,6 +55,7 @@ export interface Parameters {
      * overlay 遮罩层、content 内容、modify 修饰层、close 关闭按钮、header 页头、article 主题内容、footer 页脚
      * @type {{
      *         overlay?: CSS.Properties;
+     *         wrap?: CSS.Properties;
      *         content?: CSS.Properties;
      *         modify?: CSS.Properties;
      *         close?: CSS.Properties;
@@ -66,6 +67,7 @@ export interface Parameters {
      */
     style?: {
         overlay?: CSS.Properties;
+        wrap?: CSS.Properties;
         content?: CSS.Properties;
         modify?: CSS.Properties [];
         close?: CSS.Properties;

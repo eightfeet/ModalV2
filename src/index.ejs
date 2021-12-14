@@ -95,7 +95,10 @@
                     height: '1em',
                     top: '-3em',
                     right: '0'
-                }
+                },
+                modify: [{
+                    fontSize:'1px'
+                }]
             },
             onCancel: function(){
                 console.log('关闭！！！')
@@ -114,6 +117,9 @@
             overlay: {
                 backgroundColor: 'rgba(0,0,0,0.5)',
                 position: 'absolute'
+            },
+            wrap: {
+                verticalAlign: 'middle'
             },
             content: {
                 backgroundColor: 'rgba(255, 255, 255, 1)',

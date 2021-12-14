@@ -35,7 +35,7 @@ myModal.create({
 | parentId                  | 所挂载的父级ID用于做局部弹窗 | 否       | 默认挂在body下面，指定父级dom时将挂载在父级dom下，配合css实现局部弹窗 | String   |
 | closable                  | 是否可关闭                   | 否       | 默认true                                                     | Boolean  |
 | shouldCloseOnOverlayClick | 是否点击蒙层关闭弹窗         | 否       | 默认false                                                    | Boolean  |
-| style                     | 弹窗样式                     | 是       | 定义modal样式<br /> {<br />    overlay: 覆盖层, <br />    content: 内容区, <br />    header: 头部, <br />    article: 内容区, <br />    close: 关闭按钮, <br />    modify: 修饰器<br />}, <br />modify修饰器 是一个数组，每个数组元素对应会创建一个 基于弹窗的绝对定位div层，用于修饰弹窗（参考case） | Object   |
+| style                     | 弹窗样式                     | 是       | 定义modal样式<br /> {<br />    overlay: 覆盖层, <br />    wrap: 模块包裹层, <br />    content: 内容区, <br />    header: 头部, <br />    article: 内容区, <br />    close: 关闭按钮, <br />    modify: 修饰器<br />}, <br />modify修饰器 是一个数组，每个数组元素对应会创建一个 基于弹窗的绝对定位div层，用于修饰弹窗（参考case） | Object   |
 | animation                 | 弹窗动画                     | 否       | {<br />    form: 弹窗动画形式，参考animation附表,<br />    duration：持续时长<br />} | Object   |
 | onCancel                  | 关闭弹窗                     |          | 关闭弹窗时的回调                                             | Function |
 
@@ -186,35 +186,58 @@ const newModal = new Modal({
     
 ```
 
-## react hook
+## react 
+### Modal组件最佳实践 
+[demo](./ReactModal.tsx)
+```typescript
+    <Modal 
+        visible={visible}
+        onCancel={() => setVisible(false)}
+        overlayStyle={{background: 'rgba(0, 255, 0, 0.5)'}}
+    >
+        <div>这是一个弹窗</div>
+        <button onClick={() => setVisible(false)}>关闭弹窗</button>
+    </Modal>
+```
+
+### react hook
 - ### case react useModal hook
 
 ```typescript
-    import { useEffect, useRef, useCallback } from 'react';
-    import Modal, { ModalParameters } from '@eightfeet/modal';
+    import { useRef, useCallback, useMemo, useEffect } from "react";
+    import Modal, { ModalParameters } from "@eightfeet/modal";
 
     const useModal = (parameters: ModalParameters) => {
-        const ref = useRef<Modal | null>(null);
-        useEffect(() => {
-            ref.current = new Modal(parameters);
-            return () => {
-                if (ref.current) {
-                    const previousModal = ref.current;
-                    if (document.getElementById(previousModal.state.id || '')) {
-                        previousModal.remove();
-                    }
-                }
-            };
-        }, [parameters]);
+    const ref = useRef<Modal>();
+    useMemo(() => {
+        ref.current = new Modal(parameters);
+    }, [parameters]);
 
-        const createModal = useCallback<Modal['create']>(async (data) => ref.current?.create(data), []);
+    useEffect(() => {
+        return () => {
+        if (ref.current) {
+            const previousModal = ref.current;
+            if (document.getElementById(previousModal.state.id as string)) {
+            previousModal.remove();
+            }
+        }
+        }
+    }, [])
 
-        const hideModal = useCallback<Modal['hide']>(async (data) => ref.current?.hide(data), []);
+    const createModal = useCallback<Modal['create']>((data) => {
+        return ref.current?.create(data) || Promise.reject('modal is not ready yet!');
+    }, []);
 
-        return { createModal, hideModal };
+    const hideModal = useCallback<Modal["hide"]>((doNotRemove) => {
+        return ref.current?.hide(doNotRemove) || Promise.reject('modal is not ready yet!');
+    }, []);
+
+    return { createModal, hideModal, modal: ref.current }
     };
 
     export default useModal;
+
+
 
 
 ```
