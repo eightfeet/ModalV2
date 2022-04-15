@@ -7,7 +7,7 @@
  * @param {String} parentId 父级 id
  * @returns
  */
-export declare function createDom(dom: string, target: string, parentId: string, emBase: number): Promise<HTMLElement>;
+export declare function createDom(dom: string, target: string, parentId: string, emBase: number, className: string): Promise<HTMLElement>;
 /**
  * 移除指定id的dom及其子节点
  *

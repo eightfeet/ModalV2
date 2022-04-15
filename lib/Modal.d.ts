@@ -66,6 +66,10 @@ export interface Parameters {
      * 自定义修饰层层级
      */
     customModifyZIndex?: boolean;
+    /**
+     * 样式名称
+     */
+    className?: string;
 }
 declare class Modal {
     state: Parameters & {
@@ -76,7 +80,11 @@ declare class Modal {
         /**
          * 内容dom
          */
-        contentDom: HTMLElement | undefined;
+        contentDom?: HTMLElement;
+        /**
+         * 样式
+         */
+        className?: string;
     };
     static createInlineStyles: (style: CSS.Properties<0 | (string & {}), string & {}>) => string;
     constructor(parameter: Parameters);
