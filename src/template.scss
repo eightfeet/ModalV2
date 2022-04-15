@@ -148,7 +148,7 @@
         }
         &.coveshow {
             .content {
-                transform: perspective(0);
+                transform: perspective(400px);
                 transition-timing-function: ease-in;
                 opacity: 1;
             }
@@ -163,7 +163,7 @@
         }
         &.coveshow {
             .content {
-                transform: perspective(0);
+                transform: perspective(400px);
                 transition-timing-function: ease-in;
                 opacity: 1;
             }

@@ -87,6 +87,10 @@ export interface Parameters {
      * 自定义修饰层层级 
      */
     customModifyZIndex?: boolean;
+    /**
+     * 样式名称
+     */
+    className?: string;
 }
 
 class Modal {
@@ -98,7 +102,11 @@ class Modal {
         /**
          * 内容dom
          */
-        contentDom: HTMLElement | undefined;
+        contentDom?: HTMLElement;
+        /**
+         * 样式
+         */
+        className?: string;
     };
 
     static createInlineStyles = createInlineStyles;
@@ -115,7 +123,8 @@ class Modal {
             style,
             emBase,
             onCancel,
-            customModifyZIndex
+            customModifyZIndex,
+            className
         } = parameter || {};
 
         // 内部参数
@@ -132,6 +141,7 @@ class Modal {
             closable: closable === false ? false : true, // 是否自带关闭按钮
             style: style || null, // 基础样式
             contentDom: null,
+            className,
             emBase,
             onCancel,
             customModifyZIndex,
@@ -187,14 +197,14 @@ class Modal {
         },
         doNotRemove?: boolean
     ) => {
-        const { id, parentId, emBase, ...other } = this.state;
+        const { id, parentId, emBase, className, ...other } = this.state;
         let modalElement: HTMLElement = document.getElementById(id);
         if (modalElement) {
             this.show();
             console.warn('已创建modal时 modal.create === modal.show');
             return Promise.resolve();
         }
-        await createDom(saferInnerHtml(template(elements, other, id)), id, parentId, emBase);
+        await createDom(saferInnerHtml(template(elements, other, id)), id, parentId, emBase, className);
         this.state.display = true;
         modalElement = document.getElementById(id);
         const wrapElement = modalElement.querySelector(`.${s.cove}`);
