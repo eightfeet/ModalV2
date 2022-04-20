@@ -45,7 +45,7 @@ export default function (template: string) {
 				elem.className = attribute.value;
 			} else if (attribute.att.slice(0, 5) === 'data-') {
 				elem.setAttribute(attribute.att, attribute.value || '');
-			} else if (attribute.att === 'style') {
+			} else if (attribute.att === 'style' || attribute.att === 'maxlength') {
 				elem.setAttribute(attribute.att, attribute.value || '');
 			} else {
 				elem[attribute.att] = attribute.value || '';
