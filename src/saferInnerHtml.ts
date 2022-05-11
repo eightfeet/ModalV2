@@ -45,12 +45,16 @@ export default function (template: string) {
 				elem.className = attribute.value;
 			} else if (attribute.att.slice(0, 5) === 'data-') {
 				elem.setAttribute(attribute.att, attribute.value || '');
-			} else if (attribute.att === 'style' || attribute.att === 'maxlength' || attribute.att === 'for') {
+			} else if (
+				attribute.att === 'checked' ||
+				attribute.att === 'style' ||
+                attribute.att === 'maxlength' ||
+                attribute.att === 'for'
+			) {
 				elem.setAttribute(attribute.att, attribute.value || '');
 			} else {
 				elem[attribute.att] = attribute.value || '';
 			}
-            
 		});
 	};
 
@@ -91,7 +95,6 @@ export default function (template: string) {
 				console.log(error);
 				throw error;
 			}
-            
 		} else if (elem.type !== 'text') {
 			node.textContent = elem.content;
 		}
