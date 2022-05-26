@@ -79,7 +79,7 @@ export function createDom(
 			return;
 		}
 		const div = document.createElement('div');
-		if (className) div.classList.add(className);
+		if (className) div.classList.add(...className.split(' '));
 		div.setAttribute('id', target);
 		setEmBase(div, parentId, emBase);
 		const parentIdDom = document.getElementById(parentId);
